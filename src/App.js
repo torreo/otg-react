@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="app">
-      <div className="preview-box">
-        <h1>Preview text</h1>
-      </div>
+class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <div className="preview-box">
+          <h1>Preview text</h1>
+        </div>
 
-      <div className="form">
+        <div className="form">
           <div className="input-box">
             <input type="text" value="Preview text" />
           </div>
@@ -27,9 +28,10 @@ function App() {
 
             <button>+</button>
           </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
