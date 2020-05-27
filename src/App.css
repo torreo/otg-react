@@ -9,6 +9,7 @@
 .preview-box {
   padding: 0 20%;
   text-align: center;
+  height: 100px;
 }
 
 .form {
@@ -17,8 +18,8 @@
 
 .input-box {
   margin-bottom: 1em;
-  background: blue;
 }
+
 .input-box > input {
   width: 100%;
   box-sizing: border-box;
@@ -28,11 +29,13 @@
   display: flex;
   width: 100%;
 }
+
 .toolbar > button {
   text-align: center;
   font-size: 1.25em;
   font-weight: bold;
 }
+
 .toolbar > select {
   margin: 0 1em;
   flex: 1;
