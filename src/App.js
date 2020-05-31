@@ -1,11 +1,12 @@
 import React from 'react';
+import { Provider } from 'react-redux'
 import './App.css';
-import { Header } from './Header';
-import { Selector } from './Selector';
+import Canvas from './components/Canvas/canvas'
+import { store } from './redux/store';
 
 class App extends React.Component {
 
-  state = {
+/*  state = {
     text: 'text',
     level: 1
   };
@@ -42,30 +43,15 @@ class App extends React.Component {
     this.setState({
       level: Number(level)
     });
-  };
-
-  
+  };*/
+ 
   render() {
     return (
-      <div className="app">
-        <div className="preview-box">
-          <Header level={this.state.level}>{this.state.text}</Header>
+      <Provider store={store}>
+        <div className="app">
+          <Canvas />
         </div>
-
-        <div className="form">
-          <div className="input-box">
-            <input type="text" value={this.state.text} onChange={this.onChangeText} />
-          </div>
-
-          <div className="toolbar">
-            <button onClick={this.onDecreaseFontClick} disabled={this.state.level === 1}>-</button>
-
-            <Selector level={this.state.level} levels={this.levels} onChangeLevelHandler={this.onChangeLevel} />
-
-            <button onClick={this.onIncreaseFontClick} disabled={this.state.level === 6}>+</button>
-          </div>
-        </div>
-      </div>
+      </Provider>
     );
   }
 }
