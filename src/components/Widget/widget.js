@@ -12,7 +12,7 @@ const Widget = (props) => {
       width: props.width,
       height: props.height,
     }}>
-        <TextWidget {...props.properties} processLevelChange={() => props.processLevelChange(props.id)} processTextChange={() => props.processTextChange(props.id)} />
+        <TextWidget {...props.properties} processLevelChange={(level) => props.processLevelChange(props.id, level)} processTextChange={(text) => props.processTextChange(props.id, text)} />
     </div>
   )
 }
@@ -25,19 +25,21 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    processLevelChange: (id) => {
+    processLevelChange: (id, level) => {
       dispatch({
         type: EventTypes.CHANGE_LEVEL,
         data: {
-          id: id
+          id: id,
+          level: level
         },
       })
     },
-    processTextChange: (id) => {
+    processTextChange: (id, text) => {
       dispatch({
         type: EventTypes.CHANGE_TEXT,
         data: {
-          id: id
+          id: id,
+          text: text
         },
       })
     }

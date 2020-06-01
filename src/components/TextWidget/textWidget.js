@@ -3,24 +3,35 @@ import Header from '../Header/header';
 import Selector from '../Selector/selector';
 import { connect } from 'react-redux';
 
-const TextWidget = (props) => {
-  return (
-    <div>
+class TextWidget extends React.Component {
+
+  processTextChange = (evt) => {
+    this.props.processTextChange(evt.target.value);
+  }
+
+  processLevelChange = (level) => {
+    this.props.processLevelChange(level);
+  }
+
+  render() {
+    return (
+      <div>
         <div className="preview-box">
-            <Header level={props.level}>{props.text}</Header>
+          <Header level={this.props.level}>{this.props.text}</Header>
         </div>
 
         <div className="form">
-        <div className="input-box">
-            <input type="text" value={props.text} onChange={props.processTextChange} />
-        </div>
+          <div className="input-box">
+            <input type="text" value={this.props.text} onChange={this.processTextChange} />
+          </div>
 
-        <div className="toolbar">
-            <Selector level={props.level} processLevelChange={props.processLevelChange} />
+          <div className="toolbar">
+            <Selector level={this.props.level} processLevelChange={this.processLevelChange} />
+          </div>
         </div>
-        </div>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state, ownProps) {

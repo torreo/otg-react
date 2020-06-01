@@ -1,9 +1,12 @@
 import { createElement } from 'react';
 import { connect } from 'react-redux';
+import React from 'react';
 
-const Header = (props) => {
-  return createElement('h' + props.level, null, props.children);
-};
+class Header extends React.Component {
+  render() {
+    return createElement('h' + this.props.level, null, this.props.children);
+  }
+}
 
 function mapStateToProps(state, ownProps) {
   return {
