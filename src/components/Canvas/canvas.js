@@ -1,6 +1,6 @@
 import React from 'react';
 import Widget from "../Widget/widget";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const Canvas = (props) => {
   return (
@@ -19,8 +19,8 @@ const Canvas = (props) => {
 
 function mapStateToProps(state) {
   return {
-    widgets: state.widgets,
+    widgets: state.widgets
   }
 }
 
-export default connect(mapStateToProps)(Canvas)
+export default connect(mapStateToProps)(Canvas);

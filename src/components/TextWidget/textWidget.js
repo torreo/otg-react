@@ -1,8 +1,9 @@
 import React from 'react';
-import { Header } from '../Header/Header';
-import { Selector } from '../Selector/Selector';
+import Header from '../Header/header';
+import Selector from '../Selector/selector';
+import { connect } from 'react-redux';
 
-export function TextWidget(props) {
+const TextWidget = (props) => {
   return (
     <div>
         <div className="preview-box">
@@ -11,15 +12,24 @@ export function TextWidget(props) {
 
         <div className="form">
         <div className="input-box">
-            <input type="text" value={props.text} onChange={this.onChangeText} />
+            <input type="text" value={props.text} onChange={props.processTextChange} />
         </div>
 
         <div className="toolbar">
-            <button onClick={this.onDecreaseFontClick} disabled={props.level === 1}>-</button>
-            <Selector level={this.state.level} levels={this.levels} onChangeLevelHandler={this.onChangeLevel} />
-            <button onClick={this.onIncreaseFontClick} disabled={props.level === 6}>+</button>
+            <Selector level={props.level} processLevelChange={props.processLevelChange} />
         </div>
         </div>
     </div>
   )
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    level: ownProps.level,
+    text: ownProps.text,
+    processTextChange: ownProps.processTextChange,
+    processLevelChange: ownProps.processLevelChange
+  }
+}
+
+export default connect(mapStateToProps)(TextWidget);

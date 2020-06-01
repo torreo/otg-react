@@ -1,20 +1,25 @@
 import React from 'react';
 import './widget.css';
-import {TextWidget} from "../TextWidget/textWidget";
+import TextWidget from "../TextWidget/textWidget";
 import * as EventTypes from '../../redux/eventTypes';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const Widget = (props) => {
   return (
-    <div className="widget">
-        <TextWidget {...props.properties} />
+    <div className="widget" style={{
+      left: props.x,
+      top: props.y,
+      width: props.width,
+      height: props.height,
+    }}>
+        <TextWidget {...props.properties} processLevelChange={() => props.processLevelChange(props.id)} processTextChange={() => props.processTextChange(props.id)} />
     </div>
   )
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    ...state.widgets[ownProps.widgetId],
+    ...state.widgets[ownProps.widgetId]
   }
 }
 
