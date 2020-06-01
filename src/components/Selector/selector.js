@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as EventTypes from "../../redux/eventTypes";
 
 const levels = [1,2,3,4,5,6];
 
 class Selector extends React.Component {
 
   processLevelChange = (evt) => {
-    this.props.processLevelChange(Number(evt.target.value));
+    this.props.processLevelChange(this.props.id, Number(evt.target.value));
   }
 
   setLevel = (value) => {
@@ -17,7 +18,7 @@ class Selector extends React.Component {
       return;
     }
 
-    this.props.processLevelChange(this.props.level + value);
+    this.props.processLevelChange(this.props.id, this.props.level + value);
   };
 
   onDecreaseFontClick = () => {
@@ -45,11 +46,18 @@ class Selector extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapDispatchToProps = (dispatch) => {
   return {
-    level: ownProps.level,
-    processLevelChange: ownProps.processLevelChange
+    processLevelChange: (id, level) => {
+      dispatch({
+        type: EventTypes.CHANGE_LEVEL,
+        data: {
+          id: id,
+          level: level
+        }
+      })
+    }
   }
 }
 
-export default connect(mapStateToProps) (Selector);
+export default connect(null, mapDispatchToProps) (Selector);

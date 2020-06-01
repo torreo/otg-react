@@ -2,15 +2,12 @@ import React from 'react';
 import Header from '../Header/header';
 import Selector from '../Selector/selector';
 import { connect } from 'react-redux';
+import * as EventTypes from "../../redux/eventTypes";
 
 class TextWidget extends React.Component {
 
   processTextChange = (evt) => {
-    this.props.processTextChange(evt.target.value);
-  }
-
-  processLevelChange = (level) => {
-    this.props.processLevelChange(level);
+    this.props.processTextChange(this.props.id, evt.target.value);
   }
 
   render() {
@@ -26,7 +23,7 @@ class TextWidget extends React.Component {
           </div>
 
           <div className="toolbar">
-            <Selector level={this.props.level} processLevelChange={this.processLevelChange} />
+            <Selector level={this.props.level} id={this.props.id} />
           </div>
         </div>
       </div>
@@ -34,13 +31,18 @@ class TextWidget extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapDispatchToProps = (dispatch) => {
   return {
-    level: ownProps.level,
-    text: ownProps.text,
-    processTextChange: ownProps.processTextChange,
-    processLevelChange: ownProps.processLevelChange
+    processTextChange: (id, text) => {
+      dispatch({
+        type: EventTypes.CHANGE_TEXT,
+        data: {
+          id: id,
+          text: text
+        }
+      })
+    }
   }
 }
 
-export default connect(mapStateToProps)(TextWidget);
+export default connect(null, mapDispatchToProps)(TextWidget);

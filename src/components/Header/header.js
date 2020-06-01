@@ -8,10 +8,4 @@ class Header extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    level: ownProps.level
-  }
-}
-
-export default connect(mapStateToProps) (Header);
+export default connect() (Header);
