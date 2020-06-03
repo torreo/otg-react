@@ -44,8 +44,8 @@ export function widgetsReducer(state = initialState, action) {
           [action.data.id]: {
             ...state[action.data.id],
             properties: {
-              level: action.data.level,
-              text: state[action.data.id].properties.text
+              ...state[action.data.id].properties,
+              level: action.data.level
             }
           }
         }
@@ -56,7 +56,7 @@ export function widgetsReducer(state = initialState, action) {
           [action.data.id]: {
             ...state[action.data.id],
             properties: {
-              level: state[action.data.id].properties.level,
+              ...state[action.data.id].properties,
               text: action.data.text
             }
           }

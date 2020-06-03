@@ -11,7 +11,12 @@ const Widget = (props) => {
       width: props.width,
       height: props.height,
     }}>
-        <TextWidget {...props.properties} id={props.id} />
+      <div style={{
+        width: '100%',
+        height: '30px',
+        backgroundColor: 'red'        
+      }}></div>
+      <TextWidget {...props.properties} id={props.id} />
     </div>
   )
 }
